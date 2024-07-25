@@ -1,0 +1,40 @@
+environment: "dol"
+
+app:
+  name: a360-frontend
+
+replicas: 2
+
+securityContext:
+  runAsUser: 1000690000
+  runAsGroup: 1000690000
+
+image:
+  repository: mascmts/a360-frontend
+  tag: latest
+  pullPolicy: Always
+
+resources:
+  requests:
+    cpu: "100m"
+    memory: "500Mi"
+  limits:
+    cpu: "1000m"
+    memory: "1000Mi"
+
+readinessProbe:
+  timeoutSeconds: 10
+  initialDelaySeconds: 20
+
+livenessProbe:
+  initialDelaySeconds: 5
+  timeoutSeconds: 5
+
+volumeMounts:
+  config:
+    mountPath: /usr/share/nginx/html/appConfig.js
+    subPath: appConfig.js
+
+route:
+  enabled: true
+  host: a360.apps.advisor360.c8a360.com

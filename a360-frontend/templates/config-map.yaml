@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.app.name }}-config
+data:
+  appConfig-dol.js: |
+    window.BE_URL = "https://a360.apps.advisor360.c8a360.com/backend";
+  appConfig-adn.js: |
+    window.BE_URL = "https://cmts-web.adnovumlabs.com/";

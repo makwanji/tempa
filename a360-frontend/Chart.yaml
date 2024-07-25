@@ -1,0 +1,4 @@
+apiVersion: v2
+name: a360-frontend
+description: A Helm chart for deploying a360-frontend application
+version: 1.0.0

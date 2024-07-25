@@ -1,0 +1,44 @@
+environment: "dol"
+
+app:
+  name: a360-backend
+
+replicas: 2
+
+image:
+  repository: mascmts/a360-backend
+  tag: latest
+  pullPolicy: Always
+
+podSecurityContext:
+  runAsUser: 1000690000
+  runAsGroup: 1000690000
+
+securityContext:
+  allowPrivilegeEscalation: false
+  runAsNonRoot: true
+  capabilities:
+    drop: ["ALL"]
+  seccompProfile:
+    type: RuntimeDefault
+
+resources:
+  limits:
+    cpu: 1000m
+    memory: 1000Mi
+  requests:
+    cpu: 50m
+    memory: 500Mi
+
+readinessProbe:
+  initialDelaySeconds: 120
+  timeoutSeconds: 5
+
+livenessProbe:
+  initialDelaySeconds: 120
+  timeoutSeconds: 5
+
+route:
+  enabled: true
+  host: a360-cmts-int.adnovumlabs.com
+  path: /backend
